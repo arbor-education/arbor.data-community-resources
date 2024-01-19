@@ -1,6 +1,6 @@
 # data-community
 
-## Welcome to the Arbor Data Community!
+## Welcome to the Arbor Data Community Resource Github!
 
 ![image](https://github.com/arbor-education/arbor.data-community/blob/main/images/arbor_and_bi_pic.jpeg)
 
