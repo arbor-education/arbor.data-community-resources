@@ -1,5 +1,5 @@
 You can use SQL queries in the Snowflake UI with the BI Connector. Steps:
-
+ 
 **Steps**
 1. Go to xs48132.eu-west-2.aws.snowflakecomputing.com
 2. Enter Your Credentials.
