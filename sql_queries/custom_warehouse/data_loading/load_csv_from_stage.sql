@@ -6,12 +6,13 @@ set table_name = 'STAFF';
 -- Create Stage if it does not already exist
 create stage if not exists CSV_LOAD_STAGE;
 
--- Load example file into Stage
+-- Load file(s) into Stage
 -- This can be done using the Snowflake CLI locally or Snowflake UI
 
 -- Create a CSV file format that will parse the CSV header row, for more configuration options see: https://docs.snowflake.com/en/sql-reference/sql/create-file-format
 CREATE or replace FILE FORMAT csv_file_format
-  TYPE = csv PARSE_HEADER = true error_on_column_count_mismatch=false;
+  TYPE = csv PARSE_HEADER = true 
+  error_on_column_count_mismatch=false;
 
 -- Review inferred schema, see https://docs.snowflake.com/en/sql-reference/functions/infer_schema for more information
 SELECT *
@@ -51,7 +52,6 @@ INCLUDE_METADATA = (
 -- Review loaded data
 select * from identifier($table_name) limit 100;
 
-
 -- Create Task to load latest files in stage on a daily basis - 0800 GMT
 CREATE TASK LOAD_CSV_FILE_DAILY
   WAREHOUSE = COMPUTE_WH
@@ -63,10 +63,4 @@ FILE_FORMAT = csv_file_format
 INCLUDE_METADATA = (
     WAREHOUSE_LOAD_TIMESTAMP = METADATA$START_SCAN_TIME, SOURCE_FILE_NAME = METADATA$FILENAME);
 
-
 alter task LOAD_CSV_FILE_DAILY resume;
-
-
-
-
-
